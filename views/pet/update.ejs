@@ -1,0 +1,44 @@
+<h1>UPDATE PET</h1>
+
+<% if(error && error.length >0){ %>
+    <p style="color: red;">
+        <%= error %>
+    </p>
+    <% } %>
+        <% if(typeof alerts != 'undefined') { %>
+            <% alerts.forEach(function(alert) { %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= alert.msg %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+                </div>
+                <% }) %>
+                    <% } %>
+                        <p class="lead"> <strong>Enter Pet Info </strong> </p>
+
+                        <form method="POST" action='/admin/pet/update/<%=pet.id%>' enctype="multipart/form-data">
+                            <input type="text" name="name" value="<%=pet.name%>" class="form" placeholder="Enter Pet name">
+                            <select name="breed_id" id="breed">
+                <option value="" hidden>Select Breed</option>
+                <% breeds.forEach(breed => { %>
+                    <option value="<%= breed.breed_id %>"<% if(breed.breed_id==pet.breed_id){ %>selected <% } %> ><%= breed.category_name %> -> <%= breed.breed_name %></option>    
+                <%  }); %>
+            </select>
+                            <p> </p>
+
+                            <input type="number" name="price" value=<%=pet.price%> class="form" placeholder="Enter Price">
+                            <p> </p>
+
+                            <input type="number" name="age" value="<%=pet.age%>" class="form" placeholder="Enter Pet Age">
+                            <p> </p>
+
+                            <div class="input-group">
+                                <label for="file">Select image</label>
+                                <input type="file" id="image" name="image" accept="image/*">
+                            </div>
+                            <p> </p>
+                            <button>UPDATE PET</button>
+                        </form>
+                        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

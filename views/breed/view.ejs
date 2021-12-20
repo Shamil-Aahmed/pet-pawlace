@@ -1,0 +1,25 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>
+        Breeds
+    </h1>
+    <a href="/admin/breed/add">Add breed</a>
+    <hr>
+    <% breeds.forEach(breed => { %>
+        <div>
+            <p>
+                <%= breed.name %>
+            </p>
+            <a href="/admin/breed/update/<%= breed.id %>">Update</a>
+            <a href="/admin/breed/delete/<%= breed.id %>">Delete</a>
+        </div>
+        <% }); %>
+
+</body>
+
+</html>

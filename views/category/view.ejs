@@ -1,0 +1,26 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>
+        Categories
+    </h1>
+    <a href="/admin/category/add">Add Category</a>
+    <hr>
+    <% categories.forEach(category => { %>
+        <div>
+            <p>
+                <%= category.name %>
+            </p>
+            <a href="/admin/category/update/<%= category.id %>">Update</a>
+            <a href="/admin/category/delete/<%= category.id %>">Delete</a>
+        </div>
+        <% }); %>
+
+
+</body>
+
+</html>

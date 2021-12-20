@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div class="table-data">
+        <h2>Displaying Pets' Info</h2>
+        <table border="1">
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Age </th>
+                <th>Price</th>
+                <th>image_link</th>
+            </tr>
+
+            <%
+        if(pets.length!=0){
+        var i=1;
+        pets.forEach(function(pet){
+        %>
+                <tr>
+                    <td>
+                        <%=i %>
+                    </td>
+                    <td>
+                        <%=pet.name %>
+                    </td>
+                    <td>
+                        <%=pet.age %>
+                    </td>
+                    <td>
+                        <%=pet.price %>
+                    </td>
+                    <td>
+                        <img src="<%=pet.image_link %>" height="50px" alt="">
+                    </td>
+
+                    <td>
+                        <a href="/pet/<%=pet.id%>">details</a>
+                    </td>
+                </tr>
+                <%  i++; }) %>
+                    <% } else{ %>
+                        <tr>
+                            <td colspan="7">No Data Found</td>
+                        </tr>
+                        <% } %>
+        </table>
+    </div>
+</body>
+
+</html>

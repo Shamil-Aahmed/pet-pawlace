@@ -1,0 +1,25 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>
+        Pets
+    </h1>
+    <a href="/admin/pet/add">Add pet</a>
+    <hr>
+    <% pets.forEach(pet => { %>
+        <div>
+            <p>
+                <%= pet.name %>
+            </p>
+            <a href="/admin/pet/update/<%= pet.id %>">Update</a>
+            <a href="/admin/pet/delete/<%= pet.id %>">Delete</a>
+        </div>
+        <% }); %>
+
+</body>
+
+</html>

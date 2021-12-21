@@ -1,25 +1,104 @@
-<html>
+<%- include('../admin/partials/header.ejs') %>
 
-<head>
 
-</head>
+    <!-- Custom styles for this template -->
+    <link href="/css/admin/sb-admin-2.min.css" rel="stylesheet">
 
-<body>
-    <h1>
-        Pets
-    </h1>
-    <a href="/admin/pet/add">Add pet</a>
-    <hr>
-    <% pets.forEach(pet => { %>
-        <div>
-            <p>
-                <%= pet.name %>
-            </p>
-            <a href="/admin/pet/update/<%= pet.id %>">Update</a>
-            <a href="/admin/pet/delete/<%= pet.id %>">Delete</a>
+    <!-- Custom styles for this page -->
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+    <div class="container-fluid mt-4">
+
+        <div class="row">
+            <div class="col-6">
+                <h1 class="h1 mb-2 text-gray-800">Pets</h1>
+            </div>
+            <div class="col-6"><a class="btn btn-lg btn-primary float-right" href="/admin/pet/add">Add Pet</a></div>
         </div>
-        <% }); %>
 
-</body>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Pets List</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Breed</th>
+                                <th>Category</th>
+                                <th>Age</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Breed</th>
+                                <th>Category</th>
+                                <th>Age</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <% pets.forEach(pet => { %>
+                                <tr>
+                                    <td>
+                                        <%= pet.id%>
+                                    </td>
+                                    <td>
+                                        <%= pet.name%>
+                                    </td>
+                                    <td>
+                                        <%= pet.breed_name%>
+                                    </td>
+                                    <td>
+                                        <%= pet.category_name%>
+                                    </td>
+                                    <td>
+                                        <%= pet.age%>
+                                    </td>
+                                    <td>
+                                        <%= pet.price%>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-secondary " href="/admin/pet/update/<%= pet.id%>">Update</a>
+                                        <a class="btn btn-sm btn-danger " href="/admin/pet/delete/<%= pet.id%>">Delete</a>
+                                    </td>
+                                </tr>
+                                <% }); %>
 
-</html>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/admin/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/admin/demo/datatables-demo.js"></script>
+
+    </body>

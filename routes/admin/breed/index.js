@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 
 
 router.get("/", function(req, res) {
-    var q = "select * from breed";
+    var q = "select breed.id as id,breed.name as name,category.name category_name from breed,category where category.id=breed.category_id";
     connection.query(q, function(error, breeds) {
         if (error) {
             return res.redirect("back")

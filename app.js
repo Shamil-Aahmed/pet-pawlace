@@ -51,11 +51,11 @@ var connection = mysql.createConnection({
 var auth = require("./routes/admin/auth");
 app.use("/admin/auth", auth);
 
-var auth = require("./routes/user/auth");
-app.use("/auth", auth);
-
 var admin_breed = require("./routes/admin/breed");
-app.use("/admin/breed", middleware.isLoggedIn, middleware.isAdmin, admin_breed);
+app.use("/admin/breed",
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    admin_breed);
 
 var admin_category = require("./routes/admin/category");
 app.use(
@@ -68,14 +68,14 @@ app.use(
 var admin_pet = require("./routes/admin/pet");
 app.use("/admin/pet", middleware.isLoggedIn, middleware.isAdmin, admin_pet);
 
+var auth = require("./routes/user/auth");
+app.use("/auth", auth);
+
 var user_pet = require("./routes/user/pet");
 app.use("/pet",
-    // middleware.isLoggedIn,
+    middleware.isLoggedIn,
     user_pet);
 
-app.get("/", function(req, res) {
-    res.render("home");
-});
 app.get("/contact", function(req, res) {
     res.render("contact");
 });
@@ -83,6 +83,11 @@ app.get("/contact", function(req, res) {
 app.get("/blog", function(req, res) {
     res.render("blog");
 });
+
+app.get("/", function(req, res) {
+    res.render("home");
+});
+
 
 app.get("*", function(req, res) {
     res.send("404 not found");

@@ -37,7 +37,7 @@
                             <h5 class="card-title">
                                 <%= pet.name %>
                             </h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -57,6 +57,10 @@
                                 <strong>Age: </strong>
                                 <%= pet.age %>
                             </li>
+                            <li class="list-group-item">
+                                <strong>Description: </strong>
+                                <%=pet.pet_description%>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -64,27 +68,13 @@
                     <h4 class="mb-3">Billing address</h4>
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <div class="col-sm-6">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
 
-                            <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
-                            </div>
 
                             <div class="col-12">
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" value="<%= currentUser.name %>" disabled required>
                                     <div class="invalid-feedback">
                                         Your username is required.
                                     </div>
@@ -92,8 +82,8 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<%= currentUser.email %>" disabled required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>

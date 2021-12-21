@@ -30,7 +30,7 @@ router.post("/login", [
     .withMessage("Password field is required")
 
 ], passport.authenticate('local-admin-login', {
-    successRedirect: '/admin/auth/home', // redirect to the secure profile section
+    successRedirect: '/admin/pet', // redirect to the secure profile section
     failureRedirect: '/admin/auth/login', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
 }), function(req, res) {

@@ -33,7 +33,7 @@ router.get("/:id", function(req, res) {
     });
 });
 router.get("/checkout/:pet_id", function(req, res) {
-        var q = "select pets.id as id,pets.name as name,pets.age as age, pets.image_link as image_link, pets.price as price, breed.name as breed_name,category.name as category_name from pets,breed,category where pets.id =" + req.params.pet_id + " and pets.breed_id=breed.id and breed.category_id=category.id";
+        var q = "select pets.id as id,pets.name as name,pets.age as age, pets.pet_description as pet_description, pets.image_link as image_link, pets.price as price, breed.name as breed_name,category.name as category_name from pets,breed,category where pets.id =" + req.params.pet_id + " and pets.breed_id=breed.id and breed.category_id=category.id";
         connection.query(q, function(error, pet, field) {
             if (error) {
                 console.log(error)

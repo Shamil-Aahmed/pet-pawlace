@@ -42,7 +42,7 @@ router.post("/upload", upload.single('image'), function(req, res) {
 })
 
 router.get("/", function(req, res) {
-    var q = "select * from pets";
+    var q = "select pets.id as id,pets.name as name,pets.age as age, pets.image_link as image_link, pets.price as price, breed.name as breed_name,category.name as category_name from pets,breed,category where pets.breed_id=breed.id and breed.category_id=category.id";
     connection.query(q, function(error, pets) {
         if (error) {
             // console.log(error);
@@ -70,6 +70,13 @@ router.post("/add", upload.single('image'), [
     check("name")
     .exists().notEmpty()
     .withMessage("The name field is required"),
+    check("pet_description")
+    .exists().notEmpty()
+    .withMessage("The description field is required")
+    .isLength({
+        min: 15
+    })
+    .withMessage("Minimum Length should be 15 characters"),
     check("price")
     .exists().notEmpty()
     .withMessage("price field is required"),
@@ -98,6 +105,7 @@ router.post("/add", upload.single('image'), [
         breed_id: req.body.breed_id,
         price: req.body.price,
         age: req.body.age,
+        pet_description: req.body.pet_description,
         image_link: null,
         image_id: null,
     }
@@ -156,6 +164,13 @@ router.post("/update/:id",
         check("price")
         .exists().notEmpty()
         .withMessage("price field is required"),
+        check("pet_description")
+        .exists().notEmpty()
+        .withMessage("The description field is required")
+        .isLength({
+            min: 15
+        })
+        .withMessage("Minimum Length should be 15 characters"),
         check("age")
         .exists().notEmpty()
         .withMessage("The age field is required")

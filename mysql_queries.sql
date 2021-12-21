@@ -10,7 +10,7 @@ create table users (
     is_verified BOOLEAN default(0)
 )ENGINE = InnoDB;
 
-insert into users(name,email,password,isadmin) values ("admin456","admin1@gmail.com","admin456",1);
+
 create table category (
 	id int PRIMARY KEY auto_increment,
     name varchar(30) unique not null
@@ -33,6 +33,7 @@ create table pets(
     age varchar(2) NOT NULL ,
 	-- category_id INT NOT NULL,
     image_id varchar(200),
+	pet_description varchar(333) not null,
     image_link varchar(200),
     FOREIGN KEY (breed_id) references breed (id)  On delete cascade
     -- FOREIGN KEY (category_id) references category (id)
@@ -58,6 +59,7 @@ insert into breed (category_id,name) values ((select id from category where name
 insert into breed (category_id,name) values ((select id from category where name = "Cat"),"irish");
 insert into breed (category_id,name) values ((select id from category where name = "Horse"),"hoi");
 
-
+update users set is_admin = 1 where email = "admin456@admin.com";
+select * from users;
 
 SET foreign_key_checks = 1;

@@ -142,4 +142,10 @@ router.post("/login", [
     });
 });
 
+router.get("/logout", function(req, res) {
+    req.logOut();
+    req.flash("success", "You have been logged out");
+    res.redirect("/auth/login")
+});
+
 module.exports = router;

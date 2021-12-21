@@ -79,6 +79,12 @@ router.post("/login", [
     })
 })
 
+router.get("/logout", function(req, res) {
+    req.logOut();
+    req.flash("success", "You have been logged out");
+    res.redirect("/admin/auth/login")
+});
+
 router.get("/home", middleware.isLoggedIn, function(req, res) {
     res.render("admin/homepage")
 })

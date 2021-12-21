@@ -53,19 +53,23 @@ var auth = require('./routes/user/auth');
 app.use('/auth', auth);
 
 var admin_breed = require('./routes/admin/breed');
-app.use('/admin/breed', middleware.isLoggedIn, admin_breed);
+app.use('/admin/breed', middleware.isLoggedIn, middleware.isAdmin, admin_breed);
 
 var admin_category = require('./routes/admin/category')
-app.use('/admin/category', middleware.isLoggedIn, admin_category);
+app.use('/admin/category', middleware.isLoggedIn, middleware.isAdmin, admin_category);
 
 var admin_pet = require('./routes/admin/pet');
-app.use('/admin/pet', middleware.isLoggedIn, admin_pet);
+app.use('/admin/pet', middleware.isLoggedIn, middleware.isAdmin, admin_pet);
 
 var user_pet = require('./routes/user/pet')
 app.use('/pet', middleware.isLoggedIn, user_pet);
 
 app.get("/", function(req, res) {
-    res.send("Home page")
+    res.render("home")
+});
+
+app.get("*", function(req, res) {
+    res.send("404 not found")
 });
 
 app.listen(3000, () => {

@@ -122,7 +122,7 @@ module.exports = function(passport) {
                 if (err)
                     return done(err);
                 if (!rows.length) {
-                    return done(null, false, req.flash('error', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                    return done(null, false, req.flash('error', 'No Admin with this Email.')); // req.flash is the way to set flashdata using connect-flash
                 }
 
                 var pass = await bcrypt.compare(password, rows[0].password)

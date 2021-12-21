@@ -67,6 +67,14 @@ app.use('/pet', middleware.isLoggedIn, user_pet);
 app.get("/", function(req, res) {
     res.render("home")
 });
+app.get("/contact", function(req, res) {
+    res.render("contact");
+})
+
+app.get("/blog", function(req, res) {
+    res.render("blog");
+})
+
 
 app.get("*", function(req, res) {
     res.send("404 not found")

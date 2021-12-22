@@ -49,3 +49,25 @@
             </div>
         </nav>
     </header>
+
+    <% if(typeof alerts != 'undefined') { %>
+        <% alerts.forEach(function(alert) { %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= alert.msg %>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }) %>
+                <% } %>
+                    <% if(success){ %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <%= success %>
+                                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <% } %>
+
+                            <% if(error){ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <%= error %>
+                                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <% } %>

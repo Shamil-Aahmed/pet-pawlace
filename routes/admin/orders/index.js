@@ -3,6 +3,9 @@ var router = express.Router();
 var mysql = require('mysql2');
 const { check, validationResult } = require("express-validator");
 var multer = require("multer");
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandbox727c3495070a4db79fc2e8fe8c8b448e.mailgun.org";
+const mg = mailgun({ apiKey: "3bcafde2278abed321930631ea8d2948-1831c31e-19b14a1a", domain: DOMAIN });
 
 
 var connection = mysql.createConnection({
@@ -36,10 +39,36 @@ router.get("/verify/:id", function(req, res) {
             req.flash("error", "Could not verify");
             return res.redirect("back");
         }
+        q2 = "select users.email as email from users,orders where orders.id=" + req.params.id + " and orders.user_id=users.id";
 
-        // Send Email
-        req.flash("success", "Your request has been received. You will receive approval email.");
-        res.redirect("/admin/orders")
+        connection.query(q2, async function(error, result) {
+            if (error) {
+                console.log(error);
+                req.flash("error", "Could not verify");
+                return res.redirect("back");
+            }
+            const data = {
+                from: "Mailgun Sandbox <postmaster@sandbox727c3495070a4db79fc2e8fe8c8b448e.mailgun.org>",
+                to: result[0].email,
+                subject: "Adoption verified",
+                text: "Your Adoption has been verified"
+            };
+
+            mg.messages().send(data, function(error, body) {
+                if (error) {
+                    console.log(error);
+                    req.flash("error", "Could not send emails");
+                    return res.redirect("back");
+                }
+                console.log(body);
+                // Send Email
+                req.flash("success", "Your request has been received. You will receive approval email.");
+                res.redirect("/admin/orders")
+            });
+        })
+
+
+
     })
 });
 

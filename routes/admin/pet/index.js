@@ -42,7 +42,7 @@ router.post("/upload", upload.single('image'), function(req, res) {
 })
 
 router.get("/", function(req, res) {
-    var q = "select pets.id as id,pets.name as name,pets.age as age, pets.image_link as image_link, pets.price as price, breed.name as breed_name,category.name as category_name from pets,breed,category where pets.breed_id=breed.id and breed.category_id=category.id";
+    var q = "select pets.status as status,pets.id as id,pets.name as name,pets.age as age, pets.image_link as image_link, pets.price as price, breed.name as breed_name,category.name as category_name from pets,breed,category where pets.breed_id=breed.id and breed.category_id=category.id";
     connection.query(q, function(error, pets) {
         if (error) {
             // console.log(error);

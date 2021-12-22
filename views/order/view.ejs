@@ -12,15 +12,14 @@
 
         <div class="row">
             <div class="col-6">
-                <h1 class="h1 mb-2 text-gray-800">Pets</h1>
+                <h1 class="h1 mb-2 text-gray-800">Orders</h1>
             </div>
-            <div class="col-6"><a class="btn btn-lg btn-primary float-right" href="/admin/pet/add">Add Pet</a></div>
         </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Pets List</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Orders List</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,59 +27,61 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Breed</th>
-                                <th>Category</th>
-                                <th>Age</th>
+                                <th>User Name</th>
+                                <th>Pet Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Phone</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Breed</th>
-                                <th>Category</th>
-                                <th>Age</th>
+                                <th>User Name</th>
+                                <th>Pet Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Phone</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            <% pets.forEach(pet => { %>
+                            <% orders.forEach(order => { %>
                                 <tr>
                                     <td>
-                                        <%= pet.id%>
+                                        <%= order.id%>
                                     </td>
                                     <td>
-                                        <%= pet.name%>
+                                        <%= order.user_name %>
                                     </td>
                                     <td>
-                                        <%= pet.breed_name%>
+                                        <%= order.pet_name %>
                                     </td>
                                     <td>
-                                        <%= pet.category_name%>
+                                        <%= order.pet_price %>
                                     </td>
                                     <td>
-                                        <%= pet.age%>
+                                        <%= order.status %>
                                     </td>
                                     <td>
-                                        <%= pet.price%>
+                                        <%= order.address %>
                                     </td>
                                     <td>
-                                        <%= pet.status%>
+                                        <%= order.city %>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-secondary " href="/admin/pet/update/<%= pet.id%>">Update</a>
-                                        <a class="btn btn-sm btn-danger " href="/admin/pet/delete/<%= pet.id%>">Delete</a>
+                                        <%= order.phone_no %>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-success <%if(order.status!='unverified' ){ %> disabled <% } %>" href="/admin/orders/verify/<%= order.id %>">Verify</a>
                                     </td>
                                 </tr>
                                 <% }); %>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -91,7 +92,6 @@
 
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>

@@ -7,20 +7,30 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<%= pet.image_link %>" alt="..."></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">ID:
-                            <%= pet.id %>
-                        </div>
+
                         <h1 class="display-5 fw-bolder">
                             <%= pet.name %>
                         </h1>
                         <div class="fs-5 mb-5">
-                            <span>Rs.<%= pet.price %></span>
+                            <p>ID.
+                                <%= pet.id %>
+                            </p>
+                            <p>Age
+                                <%= pet.age %>
+                            </p>
+                            <p>Rs.
+                                <%= pet.price %>
+                            </p>
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <p class="lead">
+                            <%=pet.pet_description%>
+                        </p>
                         <div class="d-flex">
 
-                            <a href="/pet/checkout/<%=pet.id%>" class="btn btn-outline-dark flex-shrink-0">
-                                Proceed to Adopt
+                            <a href="/pet/checkout/<%=pet.id%>" class="btn btn-outline-dark flex-shrink-0 <%if(pet.status!='available' ){ %> disabled <% } %>">
+                                <%if(pet.status=='available' ){ %> Proceed to Adopt
+                                    <% }else{ %> Not Available anymore
+                                        <% } %>
                             </a>
                         </div>
                     </div>

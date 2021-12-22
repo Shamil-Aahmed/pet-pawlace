@@ -65,6 +65,14 @@ app.use(
     admin_category
 );
 
+var admin_order = require("./routes/admin/orders");
+app.use(
+    "/admin/orders",
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    admin_order
+);
+
 var admin_pet = require("./routes/admin/pet");
 app.use("/admin/pet", middleware.isLoggedIn, middleware.isAdmin, admin_pet);
 
